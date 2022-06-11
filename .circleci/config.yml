@@ -22,7 +22,7 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - retore_cache:
+      - restore_cache:
           key: "npm-packages"
       - run: npm i
       - run: npm run test
@@ -32,19 +32,19 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - retore_cache:
+      - restore_cache:
           key: "npm-packages"
       - run: npm audit
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  react-slingshot-workflow:
+  react_slingshot_workflow:
     jobs:
       - build
       - test:
           requires:
-          - build
+            - build
       - analyze:
           requires:
             - test
